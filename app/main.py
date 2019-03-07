@@ -1,4 +1,4 @@
-from app.lib import create_book, add_book, list_books, search_books, search_books_by_tag
+from lib import create_book, add_book, list_books, search_books, search_books_by_tag
 
 # TODO: tags - новый ключ в dict'е
 # TODO: tags - война, любовь, толстой
