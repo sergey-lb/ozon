@@ -24,7 +24,7 @@ def list_books(container, page, page_size):
 
 
 def search_books(container, search):  # search - строка поиска
-    if search[:1] == '#':
+    if search[0] == '#':
         search_tag = search[1:]
         return search_books_by_tag(container, search_tag)
 
