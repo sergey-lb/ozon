@@ -1,4 +1,4 @@
-from app.lib import create_book, add_book, search_books
+from app.lib import create_book, add_book, search_books, list_books
 
 
 def test_create_book():
@@ -142,3 +142,43 @@ def test_search_books_by_tag():
     result = search_books(library, '#любовь')
 
     assert result == expected
+
+
+def test_list_books():
+    library = []
+    war_and_piece = create_book(
+        'Война и мир',
+        'Толстой',
+        1000,
+        True,
+        'война, любовь, толстой'
+    )
+
+    anna_karenina = create_book(
+        'Анна Каренина',
+        'Толстой',
+        500,
+        False,
+        'поезд, любовь, толстой'
+    )
+
+    pushkin = create_book(
+        'Собрание сочинений',
+        'Пушкин',
+        500,
+        True,
+        'пушкин, сказки, стихи'
+    )
+
+    add_book(library, war_and_piece)
+    add_book(library, anna_karenina)
+    add_book(library, pushkin)
+
+    expected1 = [war_and_piece, anna_karenina]
+    expected2 = [pushkin]
+
+    result1 = list_books(library, 1, 2)
+    result2 = list_books(library, 2, 2)
+
+    assert result1 == expected1
+    assert result2 == expected2
