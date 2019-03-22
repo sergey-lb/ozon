@@ -174,11 +174,11 @@ def test_list_books():
     add_book(library, anna_karenina)
     add_book(library, pushkin)
 
-    expected1 = [war_and_piece, anna_karenina]
-    expected2 = [pushkin]
+    expected_on_first_page = [war_and_piece, anna_karenina]
+    expected_on_second_page = [pushkin]
 
-    result1 = list_books(library, 1, 2)
-    result2 = list_books(library, 2, 2)
+    first_page_result = list_books(library, 1, 2)
+    second_page_result = list_books(library, 2, 2)
 
-    assert result1 == expected1
-    assert result2 == expected2
+    assert first_page_result == expected_on_first_page
+    assert second_page_result == expected_on_second_page
