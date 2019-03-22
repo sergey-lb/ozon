@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Ozon</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Ozon</h1>
+            <form>
+                <div class="form-row">
+                    <div class="col">
+                        <input name="search" class="form-control" type="search" value="{{search}}">
+                    </div>
+                </div>
+            </form>
+            {% if not books %}
+                <p class="mt-1">По вашему запросу ничего не найдено</p>
+            {% elif search %}
+                <p class="mt-1">Найдено книг: {{books|length}}</p>
+            {% endif %}
+
+            <ul class="list-group mt-4">
+                {% for book in books %}
+                    <li class="list-group-item">
+                        {{book.title}} ({{book.author}})
+                        {{book.price}} руб.
+                        <span class="float-right">
+                            {% for tag in book.tags %}
+                                <a href="/?search=%23{{tag}}">#{{tag}}</a>{% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
