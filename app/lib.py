@@ -1,19 +1,58 @@
-def create_book(title, author, price, availability, tags_str):
+import uuid
 
-    tags = set(map(str.strip, tags_str.split(',')))
+
+def create_book(title, author, price, available, tags_str):
+
+    tags = convert_tags_from_str_to_set(tags_str)
 
     return {
+        'id': str(uuid.uuid4()),
         'title': title,
         'author': author,
         'price': price,
-        'available': availability,
+        'available': available,
         'tags': tags
     }
 
 
-def add_book(container, book):  # не чистая функция
-    container.append(book)
-    # return container # TODO: вернуться к этому вопросу позже
+def convert_tags_from_str_to_set(tags_str):
+    if not tags_str:
+        return set()
+
+    tags = set(map(str.strip, tags_str.split(',')))
+    return tags
+
+
+def generate_empty_id():
+    return uuid.UUID(int=0, version=4)
+
+
+def create_empty_book():
+    return {
+        'id': generate_empty_id(),
+        'title': '',
+        'author': '',
+        'price': 0,
+        'available': True,
+        'tags': set()
+    }
+
+
+def add_book(container, book):
+    copy = container[:]
+    copy.append(book)
+    return copy
+
+
+def update_book(book, title, author, price, available, tags_str):
+
+    tags = convert_tags_from_str_to_set(tags_str)
+
+    book['title'] = title
+    book['author'] = author
+    book['price'] = price
+    book['available'] = available
+    book['tags'] = tags
 
 
 def list_books(container, page, page_size):
@@ -50,4 +89,18 @@ def search_books_by_tag(container, search_tag):
         if search_tag_lowercased in book_tags_lowercased:
             result.append(book)
 
+    return result
+
+
+def search_book_by_id(container, book_id):
+    for book in container:
+        if book['id'] == book_id:
+            return book
+
+
+def remove_book_by_id(container, book_id):
+    result = []
+    for book in container:
+        if book['id'] != book_id:
+            result.append(book)
     return result

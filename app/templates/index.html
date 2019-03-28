@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col pt-4">
             <h1>Ozon</h1>
             <form>
                 <div class="form-row">
@@ -30,8 +30,7 @@
             <ul class="list-group mt-4">
                 {% for book in books %}
                     <li class="list-group-item">
-                        {{book.title}} ({{book.author}})
-                        {{book.price}} руб.
+                        <a href="{{ url_for('book_details', book_id=book.id) }}">{{book.title}} (Автор: {{book.author}})</a>
                         <span class="float-right">
                             {% for tag in book.tags %}
                                 <a href="/?search=%23{{tag}}">#{{tag}}</a>{% if not loop.last %},{% endif %}
@@ -40,6 +39,9 @@
                     </li>
                 {% endfor %}
             </ul>
+            <div class="mt-2">
+                <a href="{{ url_for('book_edit', book_id=empty_id) }}" class="btn btn-primary">Добавить книгу</a>
+            </div>
         </div>
     </div>
 </div>
