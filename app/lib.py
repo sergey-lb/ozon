@@ -24,7 +24,7 @@ def convert_tags_from_str_to_set(tags_str):
 
 
 def generate_empty_id():
-    return uuid.UUID(int=0, version=4)
+    return uuid.UUID(int=0)
 
 
 def create_empty_book():

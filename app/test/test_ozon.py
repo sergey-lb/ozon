@@ -3,7 +3,7 @@ from app.lib import create_book, add_book, search_books, list_books, generate_em
 
 
 def test_generate_empty_id():
-    expected = '00000000-0000-4000-8000-000000000000'
+    expected = '00000000-0000-0000-0000-000000000000'
     result = str(generate_empty_id())
 
     assert expected == result
