@@ -36,19 +36,11 @@
                         <input id="price" class="form-control" type="text" value="{{ book.price }}" name="price" required>
                     </div>
                 </div>
-                <fieldset class="form-group">
-                    <div class="row">
-                        <legend class="col-sm-2 col-form-label">Наличие</legend>
-                        <div class="col-sm-10">
-                            <div class="form-check">
-                                <input type="radio" value="1" name="available" {% if book.available != False %}checked="checked"{% endif %}> В наличии
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" value="0" name="available" {% if book.available == False %}checked="checked"{% endif %}> Нет в наличии
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
+                <div class="form-group form-check">
+                    <input id="available" type="checkbox" class="form-check-input" name="available" value="1" {% if book.available != False %}checked="checked"{% endif %}>
+                    <label for="available" class="form-check-label" >В наличии</label>
+                    <input type="hidden" name="available" value="0">
+                </div>
                 <div class="form-group row">
                     <label for="tags" class="col-sm-2 col-form-label">Теги (через ,)</label>
                     <div class="col-sm-10">
